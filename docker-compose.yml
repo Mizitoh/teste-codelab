@@ -1,0 +1,54 @@
+services:
+  db-produto:
+    container_name: db-produto
+    build:
+      context: ./back/.docker/postgres/
+      dockerfile: Dockerfile
+    command: postgres -c log_statement=all -p 5001
+    volumes:
+      - ./back/.docker/postgres/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: produto
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5001:5001"
+    networks:
+      - produto-net
+
+  api-produto:
+    container_name: api-produto
+    build:
+      context: ./back/.docker/node/
+      dockerfile: Dockerfile
+    entrypoint: .docker/node/entrypoint.sh
+    ports:
+      - "3001:3001"
+      - "7001:7001"
+    volumes:
+      - ./back:/home/node/app
+    depends_on:
+      - db-produto
+    networks:
+      - produto-net
+
+  front-produto:
+    container_name: front-produto
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./front:/home/node/app
+    entrypoint: sh ./.docker/entrypoint.sh
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - api-produto
+    networks:
+      - produto-net
+
+networks:
+  produto-net:
+    driver: bridge

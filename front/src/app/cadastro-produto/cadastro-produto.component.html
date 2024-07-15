@@ -1,0 +1,116 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="salvarProduto()">
+    <mat-icon>save</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <span class="titulo">Cadastro de produto</span>
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
+<div class="principal">
+  <div class="container">
+    <div class="row">
+      <!-- Inputs -->
+      <div class="col-md-12 mb-3">
+        <div class="row" [formGroup]="produtoForm">
+          <div class="col-md-2">
+            <label for="codigo" class="form-label">Código</label>
+            <input type="text" class="form-control input-codigo" id="codigo" formControlName="codigo" readonly>
+          </div>
+          <div class="col-md-6">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" formControlName="descricao">
+          </div>
+          <div class="col-md-2">
+            <label for="custo" class="form-label">Custo</label>
+            <input type="text" class="form-control" formControlName="custo" id="custo" formControlName="custo">
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela e Imagem -->
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col">
+            <div style="max-height: 400px; overflow-y: auto;">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>
+                      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" data-bs-toggle="modal" data-bs-target="#modalEditar">
+                        <mat-icon aria-hidden="false" fontIcon="add_circle"></mat-icon>
+                      </button>
+                      Loja</th>
+                    <th>Preço de Venda</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let precoLoja of precosLojas">
+                    <td>{{ precoLoja.descricao }}</td>
+                    <td>{{ precoLoja.precoVenda }}</td>
+                    <td>
+                      <button mat-icon-button matTooltip="Editar" color="primary" data-bs-toggle="modal" data-bs-target="#modalEditar" aria-label="Editar" (click)="editaPrecoLoja(precoLoja)">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button matTooltip="Excluir" color="warn" aria-label="Excluir">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div id="drop-area" style="border: 1px dashed #ccc; padding: 10px;">
+          <label for="imagem" class="form-label">Imagem</label>
+          <input type="file" id="imagem" class="form-control" accept="image/*" style="display: none;">
+          <p>Arraste e solte a imagem aqui, ou clique para selecionar.</p>
+        </div>
+        <div id="preview">
+          <img id="preview-image" src="#" alt="Preview" style="max-width: 100%; display: none;">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <mat-toolbar>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="adicionaPrecoLoja()">
+              <mat-icon>save</mat-icon>
+            </button>
+            <span class="titulo">Cadastro de produto</span>
+            <span class="example-spacer"></span>
+          </mat-toolbar>
+          <button mat-icon-button class="example-icon" data-bs-dismiss="modal" aria-label="Close">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="selectLoja">Selecione uma loja:</label>
+              <select id="selectLoja" class="form-control" [(ngModel)]="lojaSelecionada">
+                <option *ngFor="let loja of lojas" [ngValue]="loja">{{ loja.descricao }}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="inputPreco">Preço de Venda:</label>
+              <input type="number" id="inputPreco" class="form-control" [(ngModel)]="inputPreco">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

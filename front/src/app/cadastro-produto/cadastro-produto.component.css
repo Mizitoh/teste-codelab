@@ -1,0 +1,59 @@
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(238, 238, 238);
+  height: 8%;
+}
+
+.titulo {
+  font-size: 25px;
+  font-weight: bold;
+  flex: 1;
+  text-align: center;
+}
+
+.principal {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.container {
+  width: 80%;
+  border-radius: 10px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 3px 3px 15px rgb(0, 0, 0),
+    /* Sombra superior direita */
+    -3px 3px 15px rgb(0, 0, 0),
+    /* Sombra superior esquerda */
+    3px -3px 15px rgb(0, 0, 0),
+    /* Sombra inferior direita */
+    -3px -3px 15px rgb(0, 0, 0);
+  transition: all 0.5s ease-in-out;
+  margin: 3%;
+  height: 80%;
+  padding: 1%;
+}
+
+.input-codigo {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .row.mb-3 > .col-md-2,
+  .row.mb-3 > .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .row > .col > table {
+    width: 100%;
+  }
+}

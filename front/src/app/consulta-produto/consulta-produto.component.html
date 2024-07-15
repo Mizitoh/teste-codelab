@@ -1,0 +1,89 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="cadastra()">
+    <mat-icon>add_circle</mat-icon>
+  </button>
+  <span class="titulo">Consulta de produto</span>
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
+<!-- inputs -->
+<div class="principal">
+    <div class="container">
+      <div class="row mb-3" [formGroup]="dadosProduto">
+        <div class="col-md-2">
+          <label for="codigo" class="form-label">Código</label>
+          <input type="text" class="form-control" formControlName="codigo" id="codigo" (input)="aplicarFiltro()" >
+        </div>
+        <div class="col-md-4">
+          <label for="descricao" class="form-label">Descrição</label>
+          <input type="text" class="form-control" formControlName="descricao" id="descricao" (input)="aplicarFiltro()" >
+        </div>
+        <div class="col-md-2">
+          <label for="custo" class="form-label">Custo</label>
+          <input type="text" class="form-control" formControlName="custo" id="custo" (input)="aplicarFiltro()">
+        </div>
+        <div class="col-md-2">
+          <label for="preco" class="form-label">Preco de Venda</label>
+          <input type="text" class="form-control" formControlName="precoVenda" id="preco" (input)="aplicarFiltro()">
+        </div>
+      </div>
+
+      <!-- tabela "conteinerizada" -->
+      <div class="row">
+        <div class="col">
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> # </th>
+                <td mat-cell *matCellDef="let produto"> {{ produto.id }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="descricao">
+                <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                <td mat-cell *matCellDef="let produto"> {{ produto.descricao }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="custo">
+                <th mat-header-cell *matHeaderCellDef> Custo </th>
+                <td mat-cell *matCellDef="let produto"> {{ produto.custo }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="precoVenda">
+                <th mat-header-cell *matHeaderCellDef> Preço </th>
+                <td mat-cell *matCellDef="let produto">
+                  <ng-container *ngFor="let loja of produto.produtoLoja">
+                    {{ loja.precoVenda }}<br>
+                  </ng-container>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="acoes">
+                <th mat-header-cell *matHeaderCellDef> Ações </th>
+                <td mat-cell *matCellDef="let produto">
+
+                  <!-- botões de ação -->
+
+                  <button mat-icon-button matTooltip="Editar" color="primary" aria-label="Editar" (click)="editaProduto(produto)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="Excluir" color="warn" aria-label="Excluir" (click)="deletaProduto(produto)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [length]="totalElements"
+                           [pageSize]="pageSize"
+                           [pageIndex]="pageIndex"
+                           [pageSizeOptions]="[5, 10, 20]"
+                           (page)="onPageChange($event)">
+            </mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

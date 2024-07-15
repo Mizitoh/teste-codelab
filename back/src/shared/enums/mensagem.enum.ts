@@ -1,0 +1,17 @@
+export enum EMensagem {
+  AtualizadoSucesso = 'Atualizado com sucesso',
+  DesativadoSucesso = 'Desativado com sucesso',
+  DeletadoSucesso = 'Deletado com sucesso',
+  DeveSerVazio = 'deve ser vazio',
+  DeveSerInformado = 'deve ser informado',
+  IDsDiferentes = 'Os ids informados são diferentes',
+  ImpossivelAlterar = 'impossível alterar o cadastro',
+  ImpossivelCadastrar = 'impossivel realizar o cadastro',
+  ImpossivelDeletar = 'impossivel deletar o cadastro',
+  NaoPodeSerVazio = 'não pode ser vazio',
+  NaoValido = 'não é válido',
+  MaisCaracteresQuePermitido = 'possui mais caracteres que o permitido',
+  OrderInvalido = 'Order inválido',
+  FilterInvalido = 'Filter inválido',
+  SalvoSucesso = 'Salvo com sucesso',
+}

@@ -1,0 +1,93 @@
+# compiled output
+/teste/back/dist
+/teste/back/node_modules
+/teste/back/build
+
+/teste/front/dist
+/teste/front/node_modules
+/teste/front/build
+
+# Logs
+/logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/teste/coverage
+/teste/.nyc_output
+
+# IDEs and editors
+/teste/.idea
+/teste/.project
+/teste/.classpath
+/teste/.c9/
+/teste/*.launch
+/teste/.settings/
+/teste/*.sublime-workspace
+
+# IDE - VSCode
+/teste/.vscode/*
+!/teste/.vscode/settings.json
+!/teste/.vscode/tasks.json
+!/teste/.vscode/launch.json
+!/teste/.vscode/extensions.json
+
+# dotenv environment variable files
+/teste/.env
+/teste/.env.development.local
+/teste/.env.test.local
+/teste/.env.production.local
+/teste/.env.local
+
+# temp directory
+/teste/.temp
+/teste/.tmp
+
+# Runtime data
+/teste/pids
+/teste/*.pid
+/teste/*.seed
+/teste/*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+/teste/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Postgresql
+/teste/.docker/postgres/data
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/teste/dist
+/teste/tmp
+/teste/out-tsc
+/teste/bazel-out
+
+# Node
+/teste/node_modules
+/teste/npm-debug.log
+/teste/yarn-error.log
+
+# IDEs and editors
+/teste/.idea/
+/teste/.project
+/teste/.classpath
+/teste/.c9/
+/teste/*.launch
+/teste/.settings/
+/teste/*.sublime-workspace
+
+# Visual Studio Code
+/teste/.vscode/*
+!/teste/.vscode/settings.json
+!/teste/.vscode/tasks.json
+!/teste/.vscode/launch.json
+!/teste/.vscode/extensions.json
+/teste/.history/*
